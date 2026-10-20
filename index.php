@@ -14,17 +14,19 @@ $active  = 'menu';
 
 include __DIR__ . '/includes/head.php';
 ?>
-  <main class="app">
+  <main class="app app--menu">
     <?php include __DIR__ . '/includes/header.php'; ?>
 
+    <div class="table-bars">
     <div class="table-bar">
       <span><span class="dot"></span>Meja <?= e($meja) ?> • <?= e(AREA_MEJA) ?></span>
       <small>Menu Catalog</small>
     </div>
     <div class="table-bar table-bar--detail">
       <span class="tb-ico"><i data-ico="home"></i></span>
-      <div class="tb-text"><span><span class="dot"></span><b style="display:inline">Meja <?= e($meja) ?> • <?= e(AREA_DETAIL) ?></b></span><?= e(APP_NAME) ?>, <?= e(APP_ADDRESS) ?></div>
+      <div class="tb-text"><b><span class="dot"></span>Meja <?= e($meja) ?> • <?= e(AREA_DETAIL) ?></b><?= e(APP_NAME) ?>, <?= e(APP_ADDRESS) ?></div>
       <button class="btn">Ganti</button>
+    </div>
     </div>
 
     <label class="search">

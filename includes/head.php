@@ -3,7 +3,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="csrf-token" content="<?= e(csrf_token()) ?>">
   <title><?= e(APP_NAME) ?> — <?= e($title) ?></title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,4 +12,4 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/<?= e($cssPage) ?>.css">
 </head>
-<body>
+<body class="<?= empty($active) ? 'no-nav' : 'has-nav' ?>">

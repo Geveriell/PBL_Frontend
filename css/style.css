@@ -1,47 +1,61 @@
 /* =========================================================
-   style.css — token, reset, dan komponen yang dipakai bersama
-   Semua warna ada di :root. Ganti nilai di sini untuk
-   mewarnai ulang (merah tua = --dark, oranye/kuning = --accent).
+   style.css — token, reset, kerangka responsif, komponen bersama
+   Semua warna ada di :root. Ganti nilai di sini untuk mewarnai ulang
+   (merah tua = --dark, oranye = --accent).
+
+   Breakpoint:  < 768  ponsel  |  768–1023 tablet  |  ≥ 1024 desktop
+   Di desktop, bottom-nav berubah menjadi sidebar kiri.
    ========================================================= */
 :root {
-  --bg: #fafafa;
+  --bg: #fff5f1;
   --surface: #ffffff;
-  --ink: #111111;
-  --ink-2: #444444;
-  --muted: #8a8a8a;
-  --line: #e6e6e6;
-  --fill: #f1f1f1;
-  --fill-2: #e8e8e8;
-  --dark: #1f1f1f;       /* desain asli: merah tua */
+  --ink: #2a1411;
+  --ink-2: #5c3f39;
+  --muted: #94776f;
+  --line: #f1d9d0;
+  --fill: #fde8e1;
+  --fill-2: #f8d2c6;
+  --dark: #8b1a1a;        /* merah tua */
+  --dark-2: #5e0f10;
   --on-dark: #ffffff;
-  --accent: #cfcfcf;     /* desain asli: kuning/oranye */
-  --on-accent: #111111;
+  --accent: #f59a23;      /* oranye */
+  --accent-soft: #fde3c4;
+  --accent-ink: #9a4a00;
+  --on-accent: #2a1411;
 
   --r-pill: 999px;
   --r-xl: 22px;
   --r-lg: 18px;
   --r-md: 12px;
   --r-sm: 9px;
-  --shadow: 0 2px 10px rgba(0, 0, 0, .06);
+  --shadow: 0 2px 10px rgba(110, 30, 20, .07);
   --font: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --app-w: 390px;
-  --gutter: 14px;
+
+  --page-w: 640px;        /* lebar maksimum konten */
+  --gutter: 16px;
+  --sidebar-w: 236px;
 }
+@media (min-width: 768px)  { :root { --page-w: 760px;  --gutter: 24px; } }
+@media (min-width: 1024px) { :root { --page-w: 1120px; --gutter: 32px; } }
+@media (min-width: 1440px) { :root { --page-w: 1240px; } }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { -webkit-text-size-adjust: 100%; }
 body {
   font-family: var(--font);
-  background: #ececec;
+  background: var(--bg);
   color: var(--ink);
   font-size: 14px;
   line-height: 1.35;
   -webkit-font-smoothing: antialiased;
 }
+@media (min-width: 1024px) { body { font-size: 15px; } body.has-nav { padding-left: var(--sidebar-w); } }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
-input { font: inherit; color: inherit; border: 0; outline: 0; background: none; }
+input, select { font: inherit; color: inherit; border: 0; outline: 0; background: none; }
 a { color: inherit; text-decoration: none; }
 s { text-decoration: line-through; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+[hidden] { display: none !important; }
 
 /* ---------- Ikon ---------- */
 .ico {
@@ -51,16 +65,17 @@ s { text-decoration: line-through; }
   vertical-align: -.125em;
 }
 
-/* ---------- Kerangka aplikasi (lebar mobile) ---------- */
+/* ---------- Kerangka halaman ---------- */
 .app {
   position: relative;
-  max-width: var(--app-w);
+  width: 100%;
+  max-width: var(--page-w);
   min-height: 100vh;
+  min-height: 100dvh;
   margin: 0 auto;
-  background: var(--bg);
   padding: 10px var(--gutter) 150px;
-  box-shadow: 0 0 0 1px var(--line);
 }
+@media (min-width: 1024px) { .app { padding-top: 18px; padding-bottom: 96px; } }
 
 /* ---------- Placeholder gambar ---------- */
 .ph {
@@ -87,13 +102,43 @@ s { text-decoration: line-through; }
   background: var(--fill);
 }
 .icon-btn--accent { width: 30px; height: 30px; font-size: 16px; background: var(--accent); color: var(--on-accent); }
+@media (min-width: 1024px) {
+  .topbar { padding-bottom: 16px; }
+  .brand-logo { width: 56px; height: 38px; }
+  .brand-info h1 { font-size: 18px; }
+  .brand-info p { font-size: 13px; }
+  .icon-btn { width: 42px; height: 42px; }
+  .icon-btn--accent { width: 36px; height: 36px; }
+}
+
+/* ---------- Bar nomor meja (dipakai menu & status) ---------- */
+.table-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  background: var(--dark); color: var(--on-dark);
+  border-radius: var(--r-pill); padding: 12px 18px;
+  font-size: 13px; font-weight: 700;
+}
+.table-bar .dot, .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); display: inline-block; margin-right: 6px; }
+.table-bar small { font-size: 11px; font-weight: 600; line-height: 1.15; text-align: left; width: 60px; }
+
+/* ---------- Header halaman alur pembayaran ---------- */
+.pay-top { display: flex; align-items: center; gap: 14px; padding: 8px 0 14px; }
+.pay-top .back { font-size: 24px; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; }
+.pay-top .back:hover { background: var(--fill); }
+.pay-title { flex: 1; line-height: 1.2; }
+.pay-title b { display: flex; align-items: center; gap: 6px; font-size: 18px; font-weight: 800; letter-spacing: .01em; }
+.pay-title b::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--dark); }
+.pay-title span { font-size: 17px; }
+.table-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--fill); border-radius: var(--r-pill); padding: 8px 14px; font-weight: 800; font-size: 17px; }
 
 /* ---------- Tombol & chip ---------- */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
   height: 30px; padding: 0 14px; border-radius: var(--r-pill);
-  font-size: 12px; font-weight: 700;
+  font-size: 12px; font-weight: 700; white-space: nowrap;
+  transition: filter .15s;
 }
+.btn:hover { filter: brightness(.96); }
 .btn--accent { background: var(--accent); color: var(--on-accent); box-shadow: var(--shadow); }
 .btn--dark   { background: var(--dark); color: var(--on-dark); }
 .btn--soft   { background: var(--fill); color: var(--ink); }
@@ -106,14 +151,19 @@ s { text-decoration: line-through; }
   font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;
 }
 .chip.is-active { background: var(--dark); color: var(--on-dark); }
+@media (min-width: 1024px) {
+  .chips { margin: 0; padding: 0; flex-wrap: wrap; overflow: visible; }
+  .chip { height: 34px; padding: 0 16px; font-size: 13px; }
+}
 
 /* ---------- Kartu ---------- */
 .card { background: var(--surface); border-radius: var(--r-lg); box-shadow: var(--shadow); }
 
-/* ---------- Bottom nav ---------- */
+/* ---------- Bottom nav (ponsel/tablet) → sidebar (desktop) ---------- */
 .bottom-nav {
-  position: fixed; left: 50%; bottom: 0; transform: translateX(-50%);
-  width: 100%; max-width: var(--app-w); height: 60px;
+  position: fixed; left: 0; right: 0; bottom: 0;
+  height: calc(60px + env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
   background: var(--surface); border-top: 1px solid var(--line);
   display: grid; grid-template-columns: repeat(4, 1fr); z-index: 20;
 }
@@ -122,4 +172,42 @@ s { text-decoration: line-through; }
   gap: 3px; font-size: 11px; font-weight: 600; color: var(--muted);
 }
 .bottom-nav a .ico { font-size: 20px; }
-.bottom-nav a.is-active { color: var(--ink); }
+.bottom-nav a.is-active { color: var(--dark); }
+.nav-brand { display: none; }
+
+@media (min-width: 1024px) {
+  .bottom-nav {
+    right: auto; top: 0; width: var(--sidebar-w); height: auto; padding: 28px 14px;
+    border-top: 0; border-right: 1px solid var(--line);
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .nav-brand { display: block; padding: 0 16px 22px; font-size: 22px; font-weight: 800; letter-spacing: -.02em; color: var(--dark); }
+  .bottom-nav a {
+    flex-direction: row; justify-content: flex-start; gap: 12px;
+    height: 48px; padding: 0 16px; border-radius: var(--r-md); font-size: 15px;
+  }
+  .bottom-nav a .ico { font-size: 22px; }
+  .bottom-nav a:hover { background: var(--fill); }
+  .bottom-nav a.is-active { background: var(--fill); }
+}
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed; left: 50%; bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+  transform: translate(-50%, 12px); opacity: 0; pointer-events: none;
+  background: var(--dark-2); color: var(--on-dark);
+  padding: 10px 18px; border-radius: var(--r-pill);
+  font-size: 13px; font-weight: 600; text-align: center;
+  max-width: calc(100% - 28px); z-index: 80;
+  transition: opacity .2s, transform .2s;
+}
+.toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+@media (min-width: 1024px) { .toast { bottom: 28px; } }
+
+/* ---------- Dialog ---------- */
+dialog { border: 0; border-radius: var(--r-xl); padding: 0; max-width: calc(100% - 32px); color: var(--ink); background: var(--surface); }
+dialog::backdrop { background: rgba(42, 20, 17, .55); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

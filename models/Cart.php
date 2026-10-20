@@ -47,6 +47,30 @@ class Cart
         return ['items' => $items, 'subtotal' => $subtotal, 'pajak' => $pajak, 'total' => $subtotal + $pajak];
     }
 
+    /**
+     * Baris pesanan (hanya menu yang qty-nya > 0), untuk split bill & status.
+     * @return array<int,array{id:int,nama:string,qty:int,harga:int,opsi:string,ikon:string,foto:string}>
+     */
+    public static function lines(): array
+    {
+        $out = [];
+        foreach (Menu::all() as $m) {
+            $q = self::qty((int) $m['id']);
+            if ($q > 0) {
+                $out[] = [
+                    'id'    => (int) $m['id'],
+                    'nama'  => (string) $m['nama'],
+                    'qty'   => $q,
+                    'harga' => (int) $m['harga'],
+                    'opsi'  => trim((string) preg_replace('/^Opsi:\s*/u', '', (string) $m['opsi'])),
+                    'ikon'  => (string) ($m['ikon_opsi'] ?: 'utensils'),
+                    'foto'  => (string) $m['foto'],
+                ];
+            }
+        }
+        return $out;
+    }
+
     /** Nomor referensi pesanan, tetap selama session */
     public static function ref(): string
     {

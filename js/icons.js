@@ -26,7 +26,21 @@
     group: '<circle cx="9" cy="8" r="3.5"/><path d="M2 21c0-4 3-6 7-6s7 2 7 6M16 4.5a3.5 3.5 0 010 7M18 15c2.5.6 4 2.4 4 6"/>',
     refresh: '<path d="M20 11a8 8 0 00-14-4L4 9M4 4v5h5M4 13a8 8 0 0014 4l2-2M20 20v-5h-5"/>',
     bell: '<path d="M6 17V11a6 6 0 0112 0v6l2 2H4zM10 21h4"/>',
-    check: '<path d="M12 2l2.5 2 3-.3 1 3 2.6 1.6-1 3 1 3-2.6 1.6-1 3-3-.3L12 22l-2.5-2-3 .3-1-3L2.9 15.7l1-3-1-3L5.5 8l1-3 3 .3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>'
+    check: '<path d="M12 2l2.5 2 3-.3 1 3 2.6 1.6-1 3 1 3-2.6 1.6-1 3-3-.3L12 22l-2.5-2-3 .3-1-3L2.9 15.7l1-3-1-3L5.5 8l1-3 3 .3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
+    split: '<path d="M12 21v-8M12 13L6 6M12 13l6-7M3 9V3h6M21 9V3h-6"/>',
+    qr: '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v3M14 20h3M20 20h1"/>',
+    share: '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.6l6.8-4M8.6 13.4l6.8 4"/>',
+    expand: '<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>',
+    link: '<path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/>',
+    clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    chat: '<path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/>',
+    tick: '<path d="M5 12.5l4.5 4.5L19 7"/>',
+    swap: '<path d="M7 4L3 8l4 4M3 8h14M17 12l4 4-4 4M21 16H7"/>',
+    wallet: '<path d="M4 7h15a1 1 0 011 1v11a1 1 0 01-1 1H5a2 2 0 01-2-2V6a2 2 0 012-2h11"/><circle cx="16.5" cy="13.5" r="1.2"/>',
+    close: '<path d="M6 6l12 12M18 6L6 18"/>',
+    pot: '<path d="M4 11h16v5a4 4 0 01-4 4H8a4 4 0 01-4-4zM2 11h20M9 3c0 2 2 2 2 4M14 3c0 2 2 2 2 4"/>',
+    serve: '<path d="M3 18h18M5 18a7 7 0 0114 0M12 8V6M10 6h4"/>',
+    smile: '<circle cx="12" cy="12" r="9"/><path d="M8 14c1 2 2.5 3 4 3s3-1 4-3M9 9.5h.01M15 9.5h.01"/>'
   };
 
   let defs = '';
